@@ -38,7 +38,7 @@
                     class="hidden-md-and-up"
             ></v-toolbar-side-icon>
             <v-toolbar-title>
-                <router-link to="/" tag="span" class="pointer">Ad application</router-link>
+                <router-link to="/" tag="span" class="pointer">VueSpa</router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items class="hidden-sm-and-down">

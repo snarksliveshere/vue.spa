@@ -13,33 +13,14 @@ class Ad {
 
 export default {
   state: {
-    ads: [
-      {
-        title: 'first img',
-        description: 'first desc',
-        promo: false,
-        imageSrc: 'https://dummyimage.com/1440x500',
-        id: '123'
-      },
-      {
-        title: 'second img',
-        description: 'second desc',
-        promo: true,
-        imageSrc: 'https://dummyimage.com/1440x500/f2f2f2',
-        id: '1234'
-      },
-      {
-        title: 'third img',
-        description: 'third desc',
-        promo: true,
-        imageSrc: 'https://dummyimage.com/1440x500/b3f2a4',
-        id: '12345'
-      }
-    ]
+    ads: []
   },
   mutations: {
     createAd (state, payload) {
       state.ads.push(payload)
+    },
+    loadAds (state, payload) {
+      state.ads = payload
     }
   },
   actions: {
@@ -62,6 +43,31 @@ export default {
           ...newAd,
           id: ad.key
         })
+      } catch (error) {
+        commit('setError', error.message)
+        commit('setLoading', false)
+        throw error
+      }
+    },
+    async fetchAds ({commit}) {
+      commit('clearError')
+      commit('setLoading', true)
+
+      const resultAds = []
+
+      try {
+        const fbVal = await fb.database().ref('ads').once('value')
+        const ads = fbVal.val()
+        Object.keys(ads).forEach(key => {
+          const ad = ads[key]
+          resultAds.push(
+            new Ad(ad.title, ad.description, ad.ownerId, ad.imageSrc, ad.promo, key)
+          )
+        })
+
+        commit('loadAds', resultAds)
+
+        commit('setLoading', false)
       } catch (error) {
         commit('setError', error.message)
         commit('setLoading', false)
