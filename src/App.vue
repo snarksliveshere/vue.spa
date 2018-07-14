@@ -43,6 +43,24 @@
         <v-content>
             <router-view></router-view>
         </v-content>
+        <tempate v-if="error">
+            <v-snackbar
+                    :multi-line="mode === 'multi-line'"
+                    :timeout="5000"
+                    color="error"
+                    @input="closeError"
+                    :value="true"
+            >
+                {{ error }}
+                <v-btn
+                        dark
+                        flat
+                        @click.native="closeError"
+                >
+                    Close
+                </v-btn>
+            </v-snackbar>
+        </tempate>
     </v-app>
 </template>
 <script>
@@ -57,6 +75,16 @@
           {title: 'New ad', icon: 'note_add', url: '/new'},
           {title: 'My ads', icon: 'list', url: '/list'}
         ]
+      }
+    },
+    computed: {
+      error () {
+        return this.$store.getters.error
+      }
+    },
+    methods: {
+      closeError () {
+        return this.$store.dispatch('clearError')
       }
     }
   }
