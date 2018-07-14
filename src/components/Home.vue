@@ -1,18 +1,90 @@
 <template>
-    <v-container>
-        <v-layout row>
-            <v-flex xs12>
-                <h1>Home</h1>
-            </v-flex>
-        </v-layout>
-    </v-container>
+    <div>
+        <v-container fluid>
+            <v-carousel>
+                <v-carousel-item
+                    v-for="ad in ads"
+                    :key="ad.id"
+                    :src="ad.imageSrc"
+                >
+                    <div class="car-link">
+                        <v-btn class="error"
+                            :to="'/ad/' + ad.id"
+                        >{{ ad.title }}</v-btn>
+                    </div>
+                </v-carousel-item>
+            </v-carousel>
+        </v-container>
+        <v-container grid-list-lg>
+            <v-layout row wrap>
+                <v-flex
+                        v-for="ad in ads"
+                        :key="ad.id"
+                        xs12 sm6 md4
+
+                >
+                    <v-card>
+                        <v-card-media
+                                :src="ad.imageSrc"
+                                height="200px"
+                        ></v-card-media>
+
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">{{ ad.title }}</h3>
+                                <div>{{ ad.description }}</div>
+                            </div>
+                        </v-card-title>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn flat :to="'/ad/' + ad.id">Open</v-btn>
+                            <v-btn flat raised class="primary">Buy</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </div>
 </template>
 <script>
-    export default {
-      data () {
-        return {
-
-        }
+  export default {
+    data () {
+      return {
+        ads: [
+          {title: 'first img',
+            description: 'first desc',
+            promo: false,
+            imageSrc: 'https://dummyimage.com/1440x500',
+            id: '123'
+          },
+          {title: 'second img',
+            description: 'second desc',
+            promo: true,
+            imageSrc: 'https://dummyimage.com/1440x500/f2f2f2',
+            id: '1234'
+          },
+          {title: 'third img',
+            description: 'third desc',
+            promo: true,
+            imageSrc: 'https://dummyimage.com/1440x500/b3f2a4',
+            id: '12345'
+          }
+        ]
       }
     }
+  }
 </script>
+<style scoped="">
+    .car-link {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        background-color: rgba(0,0,0,0.5);
+        transform: translate(-50%, 0);
+        padding: 5px 15px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+    }
+</style>
