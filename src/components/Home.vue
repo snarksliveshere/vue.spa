@@ -1,6 +1,8 @@
 <template>
     <div>
         <v-container fluid>
+      <v-layout row>
+        <v-flex xs12>
             <v-carousel>
                 <v-carousel-item
                         v-for="ad in promoAds"
@@ -15,13 +17,18 @@
                     </div>
                 </v-carousel-item>
             </v-carousel>
+        </v-flex>
+      </v-layout>
         </v-container>
         <v-container grid-list-lg>
             <v-layout row wrap>
                 <v-flex
-                        v-for="ad in ads"
+          xs12
+          sm6
+          md4
+          v-for="ad of ads"
                         :key="ad.id"
-                        xs12 sm6 md4
+
                 >
                     <v-card>
                         <v-card-media
@@ -37,7 +44,7 @@
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn flat :to="'/ad/' + ad.id">Open</v-btn>
-                            <v-btn flat raised class="primary">Buy</v-btn>
+              <v-btn raised class="primary">Buy</v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-flex>
@@ -52,7 +59,7 @@
         return this.$store.getters.promoAds
       },
       ads () {
-        return this.$store.getters.promoAds
+        return this.$store.getters.ads
       }
     }
   }

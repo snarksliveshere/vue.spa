@@ -2,7 +2,8 @@
     <v-container>
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-                <h1 class="text--secondary mb3">My ads</h1>
+        <h1 class="text--secondary mb-3">My ads</h1>
+
                 <v-card class="elevation-10 mb-3"
                         v-for="ad in myAds"
                         :key="ad.id"

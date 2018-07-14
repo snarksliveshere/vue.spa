@@ -32,7 +32,7 @@ export default new Router({
     },
     {
       path: '/new',
-      name: 'new',
+      name: 'newAd',
       component: NewAd,
       beforeEnter: AuthGuard
     },

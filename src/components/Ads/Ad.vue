@@ -29,7 +29,7 @@
     computed: {
       ad () {
         const id = this.id
-        return this.$store.getters.adsById(id)
+        return this.$store.getters.adById(id)
       }
     }
   }

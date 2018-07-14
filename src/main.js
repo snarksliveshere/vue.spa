@@ -18,16 +18,14 @@ new Vue({
   components: { App },
   template: '<App/>',
   created () {
-    var config = {
+    fb.initializeApp({
       apiKey: 'AIzaSyD_-qUdR9ZExYfDdsu4QsG6pr1pCec0HmE',
       authDomain: 'vuespa-ce412.firebaseapp.com',
       databaseURL: 'https://vuespa-ce412.firebaseio.com',
       projectId: 'vuespa-ce412',
       storageBucket: 'vuespa-ce412.appspot.com',
       messagingSenderId: '64714209605'
-    }
-
-    fb.initializeApp(config)
+    })
 
     fb.auth().onAuthStateChanged(user => {
       if (user) {

@@ -6,19 +6,20 @@
                 <v-form v-model="valid" ref="form" validation class="mb-3">
                     <v-text-field
                             name="title"
-                            label="add title"
+            label="Ad title"
                             type="text"
                             v-model="title"
                             required
                             :rules="[ v => !!v || 'Title is required']"
                     ></v-text-field>
-                    <v-textarea
+          <v-text-field
                             name="description"
-                            label="add description"
+            label="Ad description"
                             type="text"
                             v-model="description"
+            multi-line
                             :rules="[ v => !!v || 'Description is required']"
-                    ></v-textarea>
+          ></v-text-field>
                 </v-form>
                 <v-layout row class="mb-3">
                     <v-flex xs12>
@@ -45,12 +46,13 @@
                     </v-flex>
                 </v-layout>
                 <v-layout row>
-                    <v-flex>
+          <v-flex xs12>
                         <v-spacer></v-spacer>
                         <v-btn
+                                :loading="loading"
                                 class="success"
                                 @click="createAd"
-                                :disabled="!valid"
+                                :disabled="!valid || loading"
                         >Create add
                         </v-btn>
                     </v-flex>
@@ -69,17 +71,26 @@
         valid: false
       }
     },
+    computed: {
+      loading () {
+        return this.$store.getters.loading
+      }
+    },
     methods: {
       createAd () {
         if (this.$refs.form.validate()) {
           const ad = {
             title: this.title,
-            descriptio: this.description,
+            description: this.description,
             promo: this.promo,
             imageSrc: 'https://s.abcnews.com/images/Technology/ht_opportunity_rover_nt_130124_wmain.jpg'
           }
 
           this.$store.dispatch('createAd', ad)
+            .then(() => {
+              this.$router.push('/list')
+            })
+            .catch(() => {})
         }
       }
     }
