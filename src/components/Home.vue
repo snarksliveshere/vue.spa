@@ -3,7 +3,7 @@
         <v-container fluid>
             <v-carousel>
                 <v-carousel-item
-                    v-for="ad in ads"
+                    v-for="ad in promoAds"
                     :key="ad.id"
                     :src="ad.imageSrc"
                 >
@@ -49,29 +49,14 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-        ads: [
-          {title: 'first img',
-            description: 'first desc',
-            promo: false,
-            imageSrc: 'https://dummyimage.com/1440x500',
-            id: '123'
-          },
-          {title: 'second img',
-            description: 'second desc',
-            promo: true,
-            imageSrc: 'https://dummyimage.com/1440x500/f2f2f2',
-            id: '1234'
-          },
-          {title: 'third img',
-            description: 'third desc',
-            promo: true,
-            imageSrc: 'https://dummyimage.com/1440x500/b3f2a4',
-            id: '12345'
-          }
-        ]
+    computed: {
+      promoAds () {
+        return this.$store.getters.promoAds;
+      },
+      ads () {
+        return this.$store.getters.promoAds;
       }
+
     }
   }
 </script>

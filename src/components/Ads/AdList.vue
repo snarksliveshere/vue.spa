@@ -4,7 +4,7 @@
             <v-flex xs12 sm6 offset-sm3>
                 <h1 class="text--secondary mb3">My ads</h1>
                 <v-card class="elevation-10 mb-3"
-                        v-for="ad in ads"
+                        v-for="ad in myAds"
                         :key="ad.id"
                 >
                     <v-layout row>
@@ -36,24 +36,9 @@
 </template>
 <script>
   export default {
-    data () {
-      return {
-        ads: [
-          {
-            title: 'first img',
-            description: 'first desc',
-            promo: false,
-            imageSrc: 'https://dummyimage.com/1440x500',
-            id: '123'
-          },
-          {
-            title: 'second img',
-            description: 'second desc',
-            promo: true,
-            imageSrc: 'https://dummyimage.com/1440x500/f2f2f2',
-            id: '1234'
-          }
-        ]
+    computed: {
+      myAds () {
+        return this.$store.getters.myAds;
       }
     }
   }
