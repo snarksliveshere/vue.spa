@@ -48,14 +48,13 @@
                     <v-flex>
                         <v-spacer></v-spacer>
                         <v-btn
-                        class="success"
-                        @click="createAd"
-                        :disabled="!valid"
-                        >Create add</v-btn>
+                                class="success"
+                                @click="createAd"
+                                :disabled="!valid"
+                        >Create add
+                        </v-btn>
                     </v-flex>
                 </v-layout>
-
-
             </v-flex>
         </v-layout>
     </v-container>
@@ -73,13 +72,14 @@
     methods: {
       createAd () {
         if (this.$refs.form.validate()) {
-           const ad = {
-             title: this.title,
-             descriptio: this.description,
-             promo: this.promo
-           }
+          const ad = {
+            title: this.title,
+            descriptio: this.description,
+            promo: this.promo,
+            imageSrc: 'https://s.abcnews.com/images/Technology/ht_opportunity_rover_nt_130124_wmain.jpg'
+          }
 
-           console.log(ad)
+          this.$store.dispatch('createAd', ad)
         }
       }
     }
