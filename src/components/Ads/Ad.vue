@@ -14,7 +14,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <addEditAdModal :ad="ad"></addEditAdModal>
+                        <addEditAdModal :ad="ad" v-if="isOwner"></addEditAdModal>
                         <v-btn class="success">Buy</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -40,6 +40,9 @@
       },
       loading () {
         return this.$store.getters.loading
+      },
+      isOwner () {
+        return this.ad.ownerId === this.$store.getters.user.id
       }
 
     },
