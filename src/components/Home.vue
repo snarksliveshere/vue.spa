@@ -81,7 +81,7 @@
     }
   }
 </script>
-<style scoped="">
+<style scoped>
     .car-link {
         position: absolute;
         bottom: 50px;
