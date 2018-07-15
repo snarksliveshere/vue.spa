@@ -6,7 +6,8 @@ import Vuetify from 'vuetify'
 import BuyModalComponent from '@/components/Shared/BuyModal'
 import * as fb from 'firebase'
 import 'vuetify/dist/vuetify.min.css'
-import colors from 'vuetify/es5/util/colors'
+import './stylus/main.styl'
+// import colors from 'vuetify/es5/util/colors'
 
 Vue.use(Vuetify, {
   theme: {

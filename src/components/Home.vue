@@ -81,8 +81,8 @@
     }
   }
 </script>
-<style scoped>
-    .car-link {
+<style scoped lang="stylus">
+    .car-link
         position: absolute;
         bottom: 50px;
         left: 50%;
@@ -91,6 +91,4 @@
         padding: 5px 15px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-
-    }
 </style>
